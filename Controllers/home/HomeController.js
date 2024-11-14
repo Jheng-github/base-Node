@@ -1,6 +1,6 @@
-const Controller = require('./Controller');
-const middleware = require('../Middleware');
-
+const Controller = require('../Controller');
+const middleware = require('../../Middlewares');
+const homeService = require('../../Services/home');
 
 class HomeController extends Controller {
   getMiddlewares() {
@@ -21,9 +21,8 @@ class HomeController extends Controller {
 
   run(opts) {
     // 自訂商業邏輯
+    return homeService.example(opts);
     return opts;
-    
-    // res.send(`Hello World! Params: ${JSON.stringify(opts)}`);
   }
 }
 

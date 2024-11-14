@@ -7,10 +7,6 @@ function logTimestamp(req, res, next) {
 // test Middleware 2
 function secondMiddleware(req, res, next) {
   console.log('secondMiddleware');
-  throw {
-    code: 401,
-    message: 'test'
-  }
   next();
 }
 
