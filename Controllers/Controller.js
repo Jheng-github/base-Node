@@ -6,12 +6,12 @@ class Controller {
 
   getOpts(req) {
     // 預設參數處理方法，可以在具體控制器中覆蓋
-    return req.query;
+    return {};
   }
 
   run(req, res) {
-    // 預設商業邏輯方法，需要在具體控制器中實作
-    res.send("BaseController run method");
+    // 預設商業邏輯方法，需要在具體控制器中實作, 沒實作預計會拋出錯誤
+    throw new Error("需實作run方法");
   }
 
   handleRequest(req, res, next) {
