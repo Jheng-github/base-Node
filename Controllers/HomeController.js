@@ -1,10 +1,13 @@
 const Controller = require('./Controller');
+const middleware = require('../Middleware');
+
 
 class HomeController extends Controller {
-  middleware(req, res, next) {
-    // 自訂中介軟體邏輯
-    console.log('HomeController middleware');
-    next();
+  getMiddlewares() {
+    return [
+      middleware.apiRateLimit.rateLimiter,
+      middleware.auth.secondMiddleware
+    ];
   }
 
   getOpts(req) {
