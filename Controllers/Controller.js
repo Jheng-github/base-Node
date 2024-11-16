@@ -15,16 +15,16 @@ class Controller {
     throw new Error("需實作run方法");
   }
 
-  handleRequest(req, res, next) {
+  async handleRequest(req, res, next) {
     const middlewares = this.getMiddlewares();
     let index = INITIAL_MIDDLEWARE_INDEX;
 
-    const nextMiddleware = (err) => {
+    const nextMiddleware = async (err) => {
       try {
         if (err) return next(err);
         if (index >= middlewares.length) {
           const opts = this.getOpts(req);
-          const result = this.run(opts);
+          const result = await this.run(opts);
           res.status(responseCode.HTTP_STATUS.SUCCESS).json({
             code: response.HTTP_STATUS.SUCCESS,
             data: result,
