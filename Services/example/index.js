@@ -4,6 +4,13 @@ function example(opts) {
   return example;
 }
 
+function getList(opts) {
+  const getList = {};
+  getList.number = opts
+  return getList;
+}
+
 module.exports = {
   example,
+  getList,
 };

@@ -1,8 +1,8 @@
 const Controller = require('../Controller');
 const middleware = require('../../Middlewares');
-const homeService = require('../../Services/home');
+const example = require('../../Services/example');
 
-class HomeController extends Controller {
+class Example2Controller extends Controller {
   getMiddlewares() {
     return [
       middleware.apiRateLimit.rateLimiter,
@@ -14,16 +14,20 @@ class HomeController extends Controller {
     // 自訂參數處理邏輯
     console.log('123123',req.body);
     let opts = {};
-    opts.a = req.body.a;
+    opts = req.params;
+    console.log('opts',opts);
     opts.b = req.body.b;
+    
     return opts;
   }
 
   run(opts) {
     // 自訂商業邏輯
-    return homeService.example(opts);
+    return example.example(opts);
     return opts;
   }
 }
 
-module.exports = new HomeController();
+module.exports = {
+  example2Controller: new Example2Controller(),
+};
