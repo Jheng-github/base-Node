@@ -1,4 +1,4 @@
-const {responseCode} = require("../Constants");
+const { responseCode } = require("../Constants");
 const INITIAL_MIDDLEWARE_INDEX = 0; // 定義初始middleware索引值
 class Controller {
   getMiddlewares() {
@@ -23,10 +23,10 @@ class Controller {
       try {
         if (err) return next(err);
         if (index >= middlewares.length) {
-          const opts = this.getOpts(req);
+          const opts = await this.getOpts(req);
           const result = await this.run(opts);
           res.status(responseCode.HTTP_STATUS.SUCCESS).json({
-            code: response.HTTP_STATUS.SUCCESS,
+            code: responseCode.HTTP_STATUS.SUCCESS,
             data: result,
           });
         } else {
@@ -37,13 +37,18 @@ class Controller {
         }
       } catch (error) {
         console.log("Error response:", error);
-        if (error.code == responseCode.HTTP_STATUS.BAD_REQUEST || error.code == responseCode.HTTP_STATUS.UNAUTHORIZED) {
+        if (
+          error.code == responseCode.HTTP_STATUS.BAD_REQUEST ||
+          error.code == responseCode.HTTP_STATUS.UNAUTHORIZED
+        ) {
           res.status(error.code).json({
             code: error.code,
             data: error.message,
           });
         } else {
-          res.status(responseCode.HTTP_STATUS.INTERNAL_SERVER_ERROR).json("Internal Server Error:", error);
+          res
+            .status(responseCode.HTTP_STATUS.INTERNAL_SERVER_ERROR)
+            .json("Internal Server Error:", error);
         }
       }
     };

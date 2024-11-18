@@ -1,3 +1,4 @@
-module.exports = { 
-  example: require('./example'),
+module.exports = {
+  example: require("./example"),
+  login: require("./login"),
 };

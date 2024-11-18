@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const example = require("../../Controllers/example");
-
+const { example } = require("../../Controllers");
 
 // 定義路由
 router.post("/post", (req, res, next) =>

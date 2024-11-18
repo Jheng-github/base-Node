@@ -1,5 +1,6 @@
-const express = require('express');
-const routes = require('./Routers');
+const express = require("express");
+const { passport } = require("./Middlewares/authenticate/index");
+const routes = require("./Routers");
 const app = express();
 const port = 3000;
 
@@ -7,11 +8,14 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// passport初始化
+app.use(passport.initialize());
+
 // 所有路由增加/api前綴
-Object.keys(routes).forEach(routeName => {
-  console.log('routeName', routeName);
-  
-  app.use('/api', routes[routeName]);
+Object.keys(routes).forEach((routeName) => {
+  console.log("routeName", routeName);
+
+  app.use("/api", routes[routeName]);
 });
 
 // 啟動伺服器
