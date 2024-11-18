@@ -7,13 +7,12 @@ class ExampleController extends Controller {
   getMiddlewares() {
     return [
       middleware.apiRateLimit.rateLimiter,
-      middleware.auth.secondMiddleware,
     ];
   }
 
   async getOpts(req) {
     // 自訂參數處理邏輯
-    console.log("123123", req.body);
+    console.log("123123", req.user);
     let opts = {};
     opts.a = req.body.a;
     opts.b = req.body.b;
@@ -22,9 +21,9 @@ class ExampleController extends Controller {
 
   async run(opts) {
     // 自訂商業邏輯
-    const member = await knex("Member").select().where("Id", 1);
-    return member;
-    return example.getList(opts);
+    // const member = await knex("Member").select().where("Id", 1);
+    // return member;
+    // return example.getList(opts);
     return opts;
   }
 }

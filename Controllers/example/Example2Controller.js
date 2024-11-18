@@ -7,10 +7,10 @@ class Example2Controller extends Controller {
     return [middleware.auth.checkLogin];
   }
 
-  async getOpts(req) {
+  async getOpts(req, defaultOpts) {
     // 自訂參數處理邏輯
     let opts = {};
-    opts.b = req.params.b;
+    opts.username = defaultOpts.username;
     return opts;
   }
 

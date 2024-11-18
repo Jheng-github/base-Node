@@ -5,7 +5,7 @@ class Controller {
     return [];
   }
 
-  getOpts(req) {
+  getOpts(req, defaultOpts) {
     // 預設參數處理方法，可以在具體控制器中覆蓋
     return {};
   }
@@ -23,7 +23,8 @@ class Controller {
       try {
         if (err) return next(err);
         if (index >= middlewares.length) {
-          const opts = await this.getOpts(req);
+          // TODO: 若有需要, req.user是token解析後的資料, 可以在去db撈出操作者資料做其他應用
+          const opts = await this.getOpts(req, req.user);
           const result = await this.run(opts);
           res.status(responseCode.HTTP_STATUS.SUCCESS).json({
             code: responseCode.HTTP_STATUS.SUCCESS,
