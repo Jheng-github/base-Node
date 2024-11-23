@@ -37,20 +37,7 @@ class Controller {
           middleware(req, res, nextMiddleware);
         }
       } catch (error) {
-        console.log("Error response:", error);
-        if (
-          error.code == responseCode.HTTP_STATUS.BAD_REQUEST ||
-          error.code == responseCode.HTTP_STATUS.UNAUTHORIZED
-        ) {
-          res.status(error.code).json({
-            code: error.code,
-            data: error.message,
-          });
-        } else {
-          res
-            .status(responseCode.HTTP_STATUS.INTERNAL_SERVER_ERROR)
-            .json("Internal Server Error:", error);
-        }
+        next(error);
       }
     };
 
