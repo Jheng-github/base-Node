@@ -15,12 +15,10 @@ const corsConfigs = {
         ? callback(null, true)
         : callback(new Error("此網域目前不被允許"));
     },
-    methods: process.env.CORS_ALLOWED_METHODS.split(","),
   },
   // 開放所有網域
   open: {
     origin: "*",
-    methods: process.env.CORS_ALLOWED_METHODS.split(","),
   },
 };
 
