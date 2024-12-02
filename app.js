@@ -2,9 +2,9 @@ const express = require("express");
 const { passport } = require("./Middlewares/authenticate/index");
 const routes = require("./Routers");
 const app = express();
-const port = 3000;
 const cors = require("cors");
 const corsOptions = require("./cors.Config");
+require("dotenv").config();
 const { responseCode } = require("./Constants");
 
 // 中介軟體
@@ -44,6 +44,6 @@ app.use((error, req, res, next) => {
 });
 
 // 啟動伺服器
-app.listen(port, () => {
-  console.log(`伺服器正在 http://localhost:${port} 上運行`);
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`伺服器正在 http://localhost:${process.env.SERVER_PORT} 上運行`);
 });

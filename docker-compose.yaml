@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}   # root 用戶的密碼
+      MYSQL_DATABASE: ${MYSQL_DATABASE}             # 預設要創建的資料庫名稱
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: ["mysqld", "--mysql-native-password=ON"]
+    
+
+volumes:
+  mysql_data:
