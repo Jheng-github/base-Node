@@ -1,9 +1,3 @@
-# 忽略本地開發的 node_modules 資料夾
-# node_modules
-
-# 忽略本地的環境變數檔案
-# .env
-
 # 其他不必要的檔案，例如 git 資料夾和日誌檔案
 .git
 *.log
