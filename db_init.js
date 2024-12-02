@@ -2,11 +2,13 @@
 const mysql = require("mysql");
 require("dotenv").config();
 
+
 // 創建與 MySQL 伺服器的連接
 const connection = mysql.createConnection({
   host: process.env.DB_HOST, // MySQL 伺服器位址
   user: process.env.DB_USER, // MySQL 用戶名
-  password: process.env.DB_PASSWORD, // MySQL 密碼
+  password: process.env.MYSQL_ROOT_PASSWORD, // MySQL 密碼
+  port : process.env.DB_PORT
 });
 
 // 連接到 MySQL 伺服器
