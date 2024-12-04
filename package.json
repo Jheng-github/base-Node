@@ -8,15 +8,18 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development nodemon app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
     "init": "node db_init.js",
-    "prod": "NODE_ENV=production nodemon app.js"
+    "prod": "cross-env NODE_ENV=production node app.js",
+    "migrate-make": "npx knex migrate:make",
+    "migrate-up": "npx knex migrate:latest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bignumber.js": "^9.1.2",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "env": "0.0.2",
     "express": "^4.21.1",

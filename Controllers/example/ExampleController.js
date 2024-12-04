@@ -2,7 +2,6 @@ const Controller = require("../Controller");
 const middleware = require("../../Middlewares");
 const example = require("../../Services/example");
 const db = require("../../database");
-
 class ExampleController extends Controller {
   getMiddlewares() {
     return [middleware.apiRateLimit.rateLimiter];
@@ -19,15 +18,14 @@ class ExampleController extends Controller {
 
   async run(opts) {
     // 自訂商業邏輯
-    const member = await knex("Member").select().where("Id", 1);
-    return member;
-    return example.getList(opts);
-
-    // 已測試過的knex語法
-    // const member = await db()
-    //   .insert({ username: "wade", password: "1234", email: "ewe" })
-    //   .into("Users");
+    // const member = await knex("Member").select().where("Id", 1);
     // return member;
+    // return example.getList(opts);
+    // 已測試過的knex語法
+    const member = await db()
+      .insert({ username: "wade", password: "1234", email: "ewe" })
+      .into("Users");
+    return member;
   }
 }
 

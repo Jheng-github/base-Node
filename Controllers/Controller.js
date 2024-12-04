@@ -18,7 +18,6 @@ class Controller {
   async handleRequest(req, res, next) {
     const middlewares = this.getMiddlewares();
     let index = INITIAL_MIDDLEWARE_INDEX;
-
     const nextMiddleware = async (err) => {
       try {
         if (err) return next(err);
@@ -37,6 +36,7 @@ class Controller {
           middleware(req, res, nextMiddleware);
         }
       } catch (error) {
+        // 進入app.js error handler
         next(error);
       }
     };

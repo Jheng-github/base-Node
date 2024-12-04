@@ -1,39 +1,39 @@
 require("dotenv").config();
-// Update with your config settings.
-
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+// knex跑migrations, 會來抓這個檔名的設定, 故需要留著
 module.exports = {
+  // 開發環境
   development: {
     client: process.env.DB_CLIENT,
     connection: {
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.MYSQL_ROOT_PASSWORD,
-      database: process.env.MYSQL_DATABASE,
-      port: process.env.DB_PORT,
+      database: process.env.DATABASE,
     },
     migrations: {
-      tableName: "knex_migrations",
+      directory: "./migrations",
+    },
+    seeds: {
+      directory: "./seeds",
     },
   },
-
-  staging: {
-    client: "postgresql",
+  // 正式環境
+  production: {
+    client: "mysql",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
-    },
-    pool: {
-      min: 2,
-      max: 10,
+      host: process.env.PROD_DB_HOST,
+      user: process.env.PROD_DB_USER,
+      password: process.env.PROD_DB_PASSWORD,
+      database: process.env.PROD_DATABASE,
     },
     migrations: {
-      tableName: "knex_migrations",
+      directory: "./migrations",
+    },
+    seeds: {
+      directory: "./seeds",
     },
   },
 };
-
-

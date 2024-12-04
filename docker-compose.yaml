@@ -2,17 +2,12 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}   # root 用戶的密碼
-      MYSQL_DATABASE: ${MYSQL_DATABASE}             # 預設要創建的資料庫名稱
+    image: mysql:8.0 # 使用 mysql 8.0 的版本, 啟動時會自動下載
+    environment: # 抓取.env 環境變數
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}   # root 用戶的密碼, 直接設置即可, 登入時使用, 若不需要密碼 MYSQL_ALLOW_EMPTY_PASSWORD 設置為 true
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"            # 允許密碼為空
+      MYSQL_DATABASE: ${DB_DATABASE}             # 預設要創建的資料庫名稱
     ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: ["mysqld", "--mysql-native-password=ON"]
-    
-
-volumes:
-  mysql_data:
+      - "3306:3306"
+    # command: ["mysqld", "--mysql-native-password=ON"] # wade版本
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"] # Jheng版本

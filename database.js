@@ -1,8 +1,11 @@
+require("dotenv").config();
 const knex = require("knex");
-const knexfile = require("./knexfile"); // 你需要根據實際路徑修改
+const dbConfig = require("./dev.config"); // 你需要根據實際路徑修改
 
-//後續有需要可以在這裡加入其他環境的設定ex. production的
-const config = knexfile["development"];
+// 抓取script的環境變數，如果沒有就使用development
+const environment = process.env.NODE_ENV || "development";
+
+const config = dbConfig[environment];
 
 const db = knex(config);
 
