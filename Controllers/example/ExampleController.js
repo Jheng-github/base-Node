@@ -25,7 +25,7 @@ class ExampleController extends Controller {
     // return example.getList(opts);
     // 已測試過的knex語法
     const member = await db()
-      .insert({ username: "wade", password: "1234", email: "ewe" })
+      .insert({ username: "jheng", password: "1234", email: "ewe" })
       .into("Users");
     return member;
   }

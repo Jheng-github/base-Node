@@ -19,7 +19,7 @@ class LoginController extends Controller {
     // example
     if (opts.username === "admin" && opts.password === 1234) {
       const token = jwt.sign(
-        { username: opts.username },
+        { username: opts.username},
         process.env.JWT_SECRET_KEY,
         {
           expiresIn: process.env.ACCESS_TOKEN,

@@ -109,7 +109,7 @@ describe("validRequireNumber", () => {
 
   it("undefined error", () => {
     const value = undefined;
-    const name = "testNaN";
+    const name = "testUndefined";
     expect(() => util.validRequireNumber(value, name))
       .to.throw()
       .that.deep.equals({

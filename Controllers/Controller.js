@@ -32,7 +32,7 @@ class Controller {
         } else {
           const middleware = middlewares[index];
           index++;
-          // 依序執行middleware
+          // 依序執行middleware, 遞迴呼叫進next, 直到middleware執行完畢
           middleware(req, res, nextMiddleware);
         }
       } catch (error) {
