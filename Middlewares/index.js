@@ -5,4 +5,7 @@ module.exports = {
   auth: {
     checkLogin: require("./authenticate/index").checkLogin,
   },
+  handler: {
+    errorHandler: require("./errorHandler/index").errorHandler,
+  }
 };
