@@ -1,6 +1,6 @@
 module.exports = {
-  apiRateLimit: {
-    rateLimiter: require("./apiRateLimit/index").rateLimiter,
+  example: {
+    example: require("./example/index").example,
   },
   auth: {
     checkLogin: require("./authenticate/index").checkLogin,

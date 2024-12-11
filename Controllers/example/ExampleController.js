@@ -4,16 +4,27 @@ const example = require("../../Services/example");
 const db = require("../../database");
 const util = require("../../util.js");
 class ExampleController extends Controller {
+  rateLimiter() {
+    return {
+      windowMs: 5000, // 5 秒
+      max: 2,
+      message: {
+        message:
+          "Too many requests from this IP, please try again after 5 seconds",
+      },
+    };
+  }
+
   getMiddlewares() {
-    return [middleware.apiRateLimit.rateLimiter];
+    return [middleware.example.example];
   }
 
   async getOpts(req) {
     // 自訂參數處理邏輯
     console.log("123123", req.user);
     let opts = {};
-    opts.a = util.validNumber(req.body.a, 'a');
-    opts.b = util.validRequireNumber(req.body.b, 'b');
+    opts.a = util.validNumber(req.body.a, "a");
+    opts.b = util.validRequireNumber(req.body.b, "b");
     return opts;
   }
 

@@ -5,13 +5,12 @@ const app = express();
 const cors = require("cors");
 const { corsConfigs } = require("./dev.config");
 const { responseCode } = require("./Constants");
-const {handler} = require("./Middlewares");
+const { handler } = require("./Middlewares");
 require("dotenv").config();
 
 // 中介軟體
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 // passport初始化
 app.use(passport.initialize());
 

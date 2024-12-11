@@ -1,6 +1,12 @@
 const { responseCode } = require("../Constants");
+const { getRateLimiter } = require("../Middlewares/apiRateLimit");
+
 const INITIAL_MIDDLEWARE_INDEX = 0; // 定義初始middleware索引值
 class Controller {
+  rateLimiter() {
+    return {};
+  }
+
   getMiddlewares() {
     return [];
   }
@@ -16,6 +22,16 @@ class Controller {
   }
 
   async handleRequest(req, res, next) {
+    const rateLimiterConfig = this.rateLimiter();
+    if (rateLimiterConfig) {
+      const limiter = getRateLimiter(rateLimiterConfig);
+      try {
+        await limiter(req, res);
+      } catch (err) {
+        return next(err);
+      }
+    }
+
     const middlewares = this.getMiddlewares();
     let index = INITIAL_MIDDLEWARE_INDEX;
     const nextMiddleware = async (err) => {
