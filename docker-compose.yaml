@@ -9,5 +9,8 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}             # 預設要創建的資料庫名稱
     ports:
       - "3306:3306"
-    # command: ["mysqld", "--mysql-native-password=ON"] # wade版本
-    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"] # Jheng版本
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+  redis:
+    image: redis:7.4.1
+    ports:
+      - "6379:6379"

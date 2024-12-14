@@ -1,5 +1,6 @@
 const { responseCode } = require("../Constants");
 const { getRateLimiter } = require("../Middlewares/apiRateLimit");
+const _ = require("lodash");
 
 const INITIAL_MIDDLEWARE_INDEX = 0; // 定義初始middleware索引值
 class Controller {
@@ -23,7 +24,7 @@ class Controller {
 
   async handleRequest(req, res, next) {
     const rateLimiterConfig = this.rateLimiter();
-    if (rateLimiterConfig) {
+    if (!_.isEmpty(rateLimiterConfig)) {
       const limiter = getRateLimiter(rateLimiterConfig);
       try {
         await limiter(req, res);
