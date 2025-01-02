@@ -1,7 +1,10 @@
 const { responseCode } = require("../../Constants");
 
 function errorHandler(error, req, res, next) {
-  console.log("錯誤訊息", error);
+  console.log(
+    "錯誤訊息",
+    typeof (error == "object") ? JSON.stringify(error) : error
+  );
 
   if (
     error.code == responseCode.HTTP_STATUS.BAD_REQUEST ||
