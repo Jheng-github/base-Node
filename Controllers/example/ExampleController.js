@@ -6,7 +6,7 @@ const util = require("../../util.js");
 class ExampleController extends Controller {
   rateLimiter() {
     return {
-      windowMs: 5000, // 5 秒
+      seconds: 5, // 5 秒
       max: 2,
       message: {
         message:

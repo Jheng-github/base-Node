@@ -11,7 +11,7 @@ function getRateLimiter(config) {
   }
 
   const limiter = rateLimit({
-    windowMs: config.windowMs,
+    windowMs: config.seconds * 1000,
     max: config.max,
     handler: (req, res, next) => {
       const err = new Error();

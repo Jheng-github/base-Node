@@ -21,11 +21,11 @@ connection.connect((err) => {
 });
 
 // 創建資料庫的 SQL 語句
-const createDatabaseQuery = `CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE}`;
+const createDatabaseQuery = `CREATE DATABASE IF NOT EXISTS ${process.env.DB_DATABASE}`;
 
 // 執行創建資料庫的 SQL 指令
 connection.query(createDatabaseQuery, () => {
-  console.log(`Database ${process.env.DATABASE} created successfully`);
+  console.log(`Database ${process.env.DB_DATABASE} created successfully`);
 
   // 關閉連接，釋放連接資源
   connection.end();
