@@ -3,10 +3,10 @@ const router = express.Router();
 const { example } = require("../../Controllers");
 
 // 定義路由
-router.post("/post", (req, res, next) =>
+router.post("/example/post", (req, res, next) =>
   example.exampleController.handleRequest(req, res, next)
 );
-router.get("/get/:user/:book", (req, res, next) =>
+router.get("/example/get/:user/:book", (req, res, next) =>
   example.example2Controller.handleRequest(req, res, next)
 );
 
